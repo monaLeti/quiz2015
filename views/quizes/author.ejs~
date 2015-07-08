@@ -1,1 +1,2 @@
-Leticia Trinidad Valderas Rodríguez
+Autor: <%= Author %> <p>
+<IMG SRC='/public/images/1.jpg'>
