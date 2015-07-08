@@ -1,2 +1,2 @@
 Autor: <%= author %> 
-<IMG SRC='/public/images/1.jpg' >
+<IMG SRC="public/images/1.jpg" >
