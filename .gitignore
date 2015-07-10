@@ -1,0 +1,5 @@
+node_module
+.DS_Store
+npm-debug.log
+quiz.sqlite
+.env
