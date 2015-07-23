@@ -40,10 +40,19 @@ exports.answer = function(req, res){
 //GET /quizes
 
 exports.index= function(req, res){
-	models.Quiz.findAll().then(function(quizes){
-		res.render('quizes/index.ejs',{ quizes: quizes});
-	})
-}
+	var busq1 = req.query.search;
+	var busq2 = ('%'+busq1+'%').replace(/ /g, '%');
+
+	if(busq1){
+		models.Quiz.findAll({ where: ["pregunta like ?", busq2]}).then(function(quizes){
+			res.render('quizes/index.ejs',{quizes: quizes});
+		}).catch(function(error){next(error);});
+	}else{
+		models.Quiz.findAll().then(function(quizes){res.render('quizes/index.ejs', {quizes: quizes});}
+		).catch(function(error){next(error);})
+	}
+
+};
 
 //GET /quiz/author
 
