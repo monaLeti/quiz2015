@@ -41,7 +41,7 @@ sequelize.sync().then(function(){
 					});
 			Quiz.create({ pregunta: 'Capital de Portugal',
 					respuesta: 'Roma'	
-				});
+				})
 			.then(function(){console.log('Base de datos inicializada')});
 		};
 	});
