@@ -11,8 +11,8 @@ exports.show = function(req, res){
 //GET /quiz/:id/answers
 
 exports.answer = function(req, res){
-	models.Quiz.find(req.param.quizId).then(function(quiz){
-		if( req.query.respuesta === quiz.respuesta){
+	models.Quiz.find(req.params.quizId).then(function(quiz){
+		if(req.query.respuesta === quiz.respuesta){
 			res.render('quizes/answer', {quiz: quiz, respuesta: "Correcto"});
 		}else{
 			res.render('quizes/answer', {quiz: quiz, respuesta: "Incorrecto"});
