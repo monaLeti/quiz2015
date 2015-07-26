@@ -11,4 +11,4 @@
 	<input type="text" name="search" value="Buscar..."/>
 	<input type="submit" value="Enviar">
    </form>
-Pregunta: <%= busqueda %> <p>
+

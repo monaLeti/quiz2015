@@ -41,7 +41,7 @@ exports.answer = function(req, res){
 
 exports.index= function(req, res){
 	var busq1 = req.query.search;
-	var busq2 = ('%'+filtro+'%').replace(/ /g, '%');
+	var busq2 = ('%'+busq1+'%').replace(/ /g, '%');
 
 	if(busq1){
 		models.Quiz.findAll({ where: ["pregunta like ?", busq2]}).then(function(quizes){
@@ -52,6 +52,15 @@ exports.index= function(req, res){
 		).catch(function(error){next(error);})
 	}
 
+};
+
+//GET /quizes/new
+
+exports.new = function(req, res){
+	var quiz = models.Quiz.build(
+		{pregunta: "Pregunta", respuesta: "Respuesta"}
+		);
+	res.render('quizes/new', {quiz: quiz});
 };
 
 //GET /quiz/author
