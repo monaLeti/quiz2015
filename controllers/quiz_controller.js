@@ -96,6 +96,7 @@ exports.edit = function (req, res){
 exports.update = function(req, res){
 	req.quiz.pregunta = req.body.quiz.pregunta;
 	req.quiz.respuesta =req.body.quiz.respuesta;
+	req.quiz.tema =req.body.quiz.tema;
 
 	req.quiz
 	.validate()
@@ -105,7 +106,7 @@ exports.update = function(req, res){
 				res.render('quizes/edit', {quiz: req.quiz, errors: err.errors});
 			}else{
 				req.quiz
-				.save( {fields: ["pregunta", "respuesta"]})
+				.save( {fields: ["pregunta", "respuesta", "tema"]})
 				.then ( function(){ res.redirect('/quizes')});
 			}
 		}
@@ -120,8 +121,11 @@ exports.destroy = function(req, res){
 	}).catch(function (error){next(error)});
 };
 
+
+
 //GET /quiz/author
 
 exports.author = function(req, res){
-	res.render('quizes/author', {author: 'Leticia Trinidad'});
+
+	res.render('quizes/author', {author: 'Leticia Trinidad', errors: []});
 };

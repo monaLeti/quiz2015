@@ -1,9 +1,34 @@
 
    
    <table>
+   <tr><td>Pregunta</td><td>Categoria</td>
    <% var i; for(i=0; i < quizes.length; i++) { %>
-	<tr><td><a href="quizes/<%=quizes[i].id %>"><%= quizes[i].pregunta %></a></td>
+	
+	<tr><td><a href="quizes/<%=quizes[i].id %>"><%= quizes[i].pregunta %></a>
+		<td><%= quizes[i].tema %></td>
 		<td><a href="quizes/<%= quizes[i].id %>/edit"><button>editar</button></a></td>
+		
+		<td>
+			<form method="post" action="quizes/<%= quizes[i].id %>?_method=delete">
+			<button type="submit" onClick="return confirm('Borrar: <%= quizes[i].pregunta %>');">
+	borrar
+			</button>
+			</form>
+		</td>
+		<td>
+			<form method="get" action="quizes/author">
+			<select name="<%= quizes[i].tema %>">
+				<option value="otro"selected>Otro</option>
+				<option value="humanidades">Humanidades</option>
+				<option value="ocio">Ocio</option>
+				<option value="ciencia">Ciencia</option>
+				<option value="tecnologia">Tecnología</option>
+			
+			
+			</select>
+			</form>
+			
+		</td>
 	</tr>
    <% } %>
    </table>
