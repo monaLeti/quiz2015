@@ -29,6 +29,22 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(partials());
 
 app.use(function(req, res, next){
+	if(req.session.user){	//usuario conectado
+		if(!req.session.connecttime){
+			req.session.connecttime=(new Date()).getTime();
+		}else{
+			if((new Date()).getTime()-req.session.connecttime > 120000){
+				delete req.session.user;
+				delete req.session.connecttime;
+			} else{
+				req.session.connecttime=(new Date()).getTime();
+			}
+		}
+	}
+	next();
+});
+
+app.use(function(req, res, next){
 	//guardar path en session.redir para despues de login
 	if(!req.path.match(/\/login|\/logout/)){
 		req.session.redir = req.path;
